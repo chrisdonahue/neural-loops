@@ -1,0 +1,247 @@
+/* Coolors Exported Palette - coolors.co/353535-3c6e71-ffffff-d9d9d9-284b63 */
+/* HSL */
+/* RGB */
+* {
+  box-sizing: border-box; }
+
+html {
+  height: 100%;
+  width: 100%; }
+
+body {
+  width: 100%;
+  background-color: white;
+  font-family: "Muli", sans-serif; }
+
+button {
+  outline: none;
+  opacity: 0.85;
+  transition: opacity 0.3s; }
+  button:hover {
+    opacity: 1.0; }
+
+.container {
+  height: 100%; }
+  .container .header {
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0 2rem 0; }
+    .container .header h1 {
+      margin: 0; }
+  .container .interface {
+    height: auto;
+    margin: 0 auto;
+    max-width: 600px; }
+    @media screen and (max-width: 640px) {
+      .container .interface {
+        padding: 0px; } }
+    .container .interface .flex-item {
+      width: 100%;
+      margin: 0 20px 0 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 20px; }
+      @media screen and (max-width: 640px) {
+        .container .interface .flex-item {
+          padding: 5px; } }
+    .container .interface .block-wrapper {
+      display: flex;
+      margin: 1rem 0 1rem 0; }
+      .container .interface .block-wrapper .button-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-evenly; }
+        .container .interface .block-wrapper .button-wrapper button {
+          border: none;
+          background-color: #fd90a0;
+          border-radius: 10px;
+          width: 25px;
+          height: 25px; }
+    .container .interface #drum-block-wrapper {
+      height: 25vh; }
+    .container .interface .melodies {
+      margin-top: 2rem;
+      width: 100%; }
+      .container .interface .melodies .block-wrapper {
+        height: 15vh; }
+      .container .interface .melodies .melody {
+        background-color: #353535;
+        border-radius: 10px;
+        width: 100%; }
+    .container .interface .drum-sequencer {
+      background-color: #353535;
+      border-radius: 10px;
+      width: 100%;
+      padding: 0.5rem 1rem; }
+  .container .control {
+    height: 3.5vh;
+    margin: 0 auto 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; }
+    .container .control p {
+      user-select: none;
+      text-align: center;
+      margin: 0 auto; }
+    .container .control button {
+      color: white;
+      border: none;
+      background-color: #fd90a0;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      width: 4rem;
+      max-width: 150px;
+      height: 30px; }
+    .container .control input[type=range] {
+      -webkit-appearance: none;
+      /*hide the outline behind the border*/
+      /* for ie */ }
+      .container .control input[type=range]::-webkit-slider-runnable-track {
+        height: 10px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px; }
+      .container .control input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #fd90a0;
+        margin-top: -3px; }
+      .container .control input[type=range]:focus {
+        outline: none; }
+      .container .control input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #ccc; }
+      .container .control input[type=range] {
+        /* fix for FF unable to apply focus style bug  */
+        border: 1px solid white;
+        /*required for proper track sizing in FF*/ }
+      .container .control input[type=range]::-moz-range-track {
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px; }
+      .container .control input[type=range]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #fd90a0; }
+      .container .control input[type=range]:-moz-focusring {
+        outline: 1px solid white;
+        outline-offset: -1px; }
+      .container .control input[type=range]:focus::-moz-range-track {
+        background: #ccc; }
+      .container .control input[type=range]::-ms-track {
+        width: 300px;
+        height: 5px;
+        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+        background: transparent;
+        /*leave room for the larger thumb to overflow with a transparent border */
+        border-color: transparent;
+        border-width: 6px 0;
+        /*remove default tick marks*/
+        color: transparent; }
+      .container .control input[type=range]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px; }
+      .container .control input[type=range]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px; }
+      .container .control input[type=range]::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod; }
+      .container .control input[type=range]:focus::-ms-fill-lower {
+        background: #888; }
+      .container .control input[type=range]:focus::-ms-fill-upper {
+        background: #ccc; }
+
+.tooltip {
+  position: relative;
+  display: flex;
+  border-bottom: 1px dotted black; }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    height: 40px;
+    background-color: #353535;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 3px 5px 3px;
+    position: absolute;
+    z-index: 1;
+    bottom: -25%;
+    left: -50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    line-height: 120%;
+    font-size: 0.8rem; }
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 105%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #353535; }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 0.7; }
+
+.tooltip-right {
+  position: relative;
+  display: flex;
+  border-bottom: 1px dotted black; }
+  .tooltip-right .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    height: 40px;
+    background-color: #353535;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 3px 5px 3px;
+    position: absolute;
+    z-index: 1;
+    bottom: -25%;
+    right: -50%;
+    margin-right: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    line-height: 120%;
+    font-size: 0.8rem; }
+  .tooltip-right .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    right: 100%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #353535 transparent transparent; }
+  .tooltip-right:hover .tooltiptext {
+    visibility: visible;
+    opacity: 0.7; }
+
+.canvas {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  margin: 0 auto;
+  bottom: 1rem; }
+
+
+/*# sourceMappingURL=bundle.css.map*/
