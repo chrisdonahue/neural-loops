@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neural Loops</title>
+
+    <!-- favicon -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/198/brain_1f9e0.png"> -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/198/robot-face_1f916.png"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.1.2"></script>
+    <script src="magentamusic.js"></script>
+    <!-- fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli:400,700"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Neural Loops</h1>
+        <p>
+          ✨ You can use machine learning to create sounds, notes, and music.
+          <br />
+          🙌 Press 🎹/🥁 to change the sounds in each track. Similarly, press 🎵
+          to change notes.
+        </p>
+      </div>
+      <div class="interface">
+        <div class="control">
+          <button id="play">
+            start
+          </button>
+          <button id="reload">
+            reload
+          </button>
+          <button id="update-tim-melody-bass">
+            🎹
+          </button>
+          <button id="update-tim-drums">
+            🥁
+          </button>
+          <button id="update-sco-all">
+            🎵
+          </button>
+        </div>
+        <div class="control">
+          <div class="slider-container">
+            <p>volume</p>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="80"
+              class="slider"
+              id="volume"
+            />
+          </div>
+          <div class="slider-container">
+            <p>reverb</p>
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              value="0"
+              class="slider"
+              id="reverb"
+            />
+          </div>
+          <div class="slider-container">
+            <p>bpm</p>
+            <input
+              type="range"
+              min="60"
+              max="180"
+              value="120"
+              class="slider"
+              id="bpm"
+            />
+          </div>
+          <div class="slider-container">
+            <p>swing</p>
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              value="0"
+              class="slider"
+              id="swing"
+            />
+          </div>
+        </div>
+        <div class="melodies">
+          <div class="block-wrapper">
+            <div class="button-wrapper">
+              <button id="update-tim-tm" class="tooltip">
+                🎹
+                <span class="tooltiptext">Change Melody Sound</span>
+              </button>
+            </div>
+            <div class="melody flex-item">
+              <canvas id="canvas-1" class="canvas"></canvas>
+            </div>
+            <div class="button-wrapper">
+              <button id="update-sco-tm" class="tooltip-right">
+                🎵
+                <span class="tooltiptext">Change Melody Notes</span>
+              </button>
+            </div>
+          </div>
+          <div class="block-wrapper">
+            <div class="button-wrapper">
+              <button id="update-tim-tb" class="tooltip">
+                🎹
+                <span class="tooltiptext">Change Bass Sound</span>
+              </button>
+            </div>
+            <div class="melody flex-item">
+              <canvas id="canvas-2" class="canvas"></canvas>
+            </div>
+            <div class="button-wrapper">
+              <button id="update-sco-tb" class="tooltip-right">
+                🎵
+                <span class="tooltiptext">Change Bass Notes</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="block-wrapper" id="drum-block-wrapper">
+          <div class="button-wrapper">
+            <button id="update-tim-d0" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Kick Sound</span>
+            </button>
+            <button id="update-tim-d1" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Snare Sound</span>
+            </button>
+            <button id="update-tim-d2" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Closed Hihat</span>
+            </button>
+            <button id="update-tim-d3" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Opened Hihat</span>
+            </button>
+            <button id="update-tim-d4" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Low Tom</span>
+            </button>
+            <button id="update-tim-d5" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Mid Tom</span>
+            </button>
+            <button id="update-tim-d6" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change High Tom</span>
+            </button>
+            <button id="update-tim-d7" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Crash Sound</span>
+            </button>
+            <button id="update-tim-d8" class="tooltip">
+              🥁
+              <span class="tooltiptext">Change Ride Sound</span>
+            </button>
+          </div>
+          <div id="drum-sequencer" class="drum-sequencer flex-item">
+            <canvas id="canvas-3" class="canvas"></canvas>
+          </div>
+          <div class="button-wrapper">
+            <button id="update-sco-d0" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Kick Notes</span>
+            </button>
+            <button id="update-sco-d1" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Snare Notes</span>
+            </button>
+            <button id="update-sco-d2" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Closed Hihat</span>
+            </button>
+            <button id="update-sco-d3" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Opened Hihat</span>
+            </button>
+            <button id="update-sco-d4" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Low Tom</span>
+            </button>
+            <button id="update-sco-d5" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Mid Tom</span>
+            </button>
+            <button id="update-sco-d6" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change High Tom</span>
+            </button>
+            <button id="update-sco-d7" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Crash Notes</span>
+            </button>
+            <button id="update-sco-d8" class="tooltip-right">
+              🎵
+              <span class="tooltiptext">Change Ride Notes</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      2019 © Vibert Thio and Chris Donahue
+    </footer>
+  </body>
+</html>

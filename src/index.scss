@@ -1,0 +1,365 @@
+@import './palette.scss';
+
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+$font: 'Muli', sans-serif;
+$pixel-size: 10px;
+$border-radius: 10px;
+$background-color: $color3;
+$block-color: $color1;
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	// height: 100%;
+	width: 100%;
+	background-color: $background-color;
+	font-family: $font;
+}
+
+button {
+	outline:none;
+	opacity: 0.85;
+	transition: opacity 0.3s;
+
+	&:hover {
+		opacity: 1.0;
+	}
+}
+
+.container {
+	// width: 100%;
+	height: 100%;
+
+	.header {
+		width: 100%;
+    	text-align: center;
+		margin: 2rem 0 2rem 0;
+
+		h1 {
+			margin: 0;
+		}
+	}
+
+	.interface {
+		// display: flex;
+		height: auto;
+		margin: 0 auto;
+		max-width: 600px;
+		// padding: 0 20%;
+		@include mobile {
+			padding: 0px;
+		}
+
+		.flex-item {
+			// background-color: rgba(0, 0, 0, 0.9);
+			width: 100%;
+			// margin: 1rem 20px;
+			margin: 0 20px 0 20px;
+			// height: 95%;
+			border-radius: $border-radius;
+			overflow: hidden;
+			padding: 20px;
+			@include mobile {
+				padding: 5px;
+			}
+		}
+
+		.block-wrapper {
+			display: flex;
+			margin: 1rem 0 1rem 0;
+			
+			.button-wrapper {
+				display: flex;
+				flex-direction: column-reverse;
+				justify-content: space-evenly;
+				button {
+					// display: block;
+
+					border: none;
+					background-color: $color7;
+					border-radius: $pixel-size;
+					width: $pixel-size * 2.5;
+					height: $pixel-size * 2.5;
+				}
+			}
+		}
+
+		#drum-block-wrapper {
+			height: 25vh;
+		}
+
+		.melodies {
+			margin-top: 2rem;
+			width: 100%;
+			.block-wrapper {
+				height: 15vh;
+			}
+			.melody {
+				background-color: $block-color;
+				border-radius: $border-radius;
+				width: 100%;
+			}
+
+		}
+		.drum-sequencer {
+			background-color: $block-color;
+			border-radius: $border-radius;
+			width: 100%;
+			// height: 18rem;
+			padding: 0.5rem 1rem;
+		}
+	}
+	.control {
+		// max-width: 400px;
+		height: 3.5vh;
+		margin: 0 auto 0 auto;
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+
+		p {
+			user-select: none;
+			text-align: center;
+			margin: 0 auto;
+		}
+		
+		button {
+
+			color: $color3;
+			border: none;
+			background-color: $color7;
+			border-radius: $pixel-size;
+			margin-bottom: 1rem;
+			font-size: 1rem;
+			width: 4rem;
+			max-width: 150px;
+			height: $pixel-size * 3;
+		}
+
+
+		input[type=range] {
+			-webkit-appearance: none;
+			&::-webkit-slider-runnable-track {
+				// width: 300px;
+				// height: 5px;
+				height: 10px;
+				background: #ddd;
+				border: none;
+				border-radius: 3px;
+			}
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				border: none;
+				height: 16px;
+				width: 16px;
+				border-radius: 50%;
+				background: $color7;
+				// margin-top: -4px;
+				margin-top: -3px;
+			}
+			&:focus {
+				outline: none;
+			}
+			&:focus::-webkit-slider-runnable-track {
+				background: #ccc;
+			}
+			& {
+				/* fix for FF unable to apply focus style bug  */
+				border: 1px solid white;
+				/*required for proper track sizing in FF*/
+				// width: 300px;
+			}
+			&::-moz-range-track {
+				// width: 300px;
+				height: 5px;
+				background: #ddd;
+				border: none;
+				border-radius: 3px;
+			}
+			&::-moz-range-thumb {
+				border: none;
+				height: 16px;
+				width: 16px;
+				border-radius: 50%;
+				background: $color7;
+			}
+
+			/*hide the outline behind the border*/
+			&:-moz-focusring {
+				outline: 1px solid white;
+				outline-offset: -1px;
+			}
+			&:focus::-moz-range-track {
+				background: #ccc;
+			}
+
+			/* for ie */
+
+			&::-ms-track {
+				width: 300px;
+				height: 5px;
+
+				/*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+				background: transparent;
+
+				/*leave room for the larger thumb to overflow with a transparent border */
+				border-color: transparent;
+				border-width: 6px 0;
+
+				/*remove default tick marks*/
+				color: transparent;
+			}
+			&::-ms-fill-lower {
+				background: #777;
+				border-radius: 10px;
+			}
+			&::-ms-fill-upper {
+				background: #ddd;
+				border-radius: 10px;
+			}
+			&::-ms-thumb {
+				border: none;
+				height: 16px;
+				width: 16px;
+				border-radius: 50%;
+				background: goldenrod;
+			}
+			&:focus::-ms-fill-lower {
+				background: #888;
+			}
+			&:focus::-ms-fill-upper {
+				background: #ccc;
+			}
+		}
+
+
+	}
+}
+
+.tooltip {
+	position: relative;
+	display: flex;
+	border-bottom: 1px dotted black;
+
+	.tooltiptext {
+		visibility: hidden;
+		//   width: 100px;
+		width: $pixel-size * 10;
+		height: $pixel-size * 4;
+		background-color: $color1;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 3px 5px 3px;
+		position: absolute;
+		z-index: 1;
+		//   bottom: 125%;
+		//   left: 50%;
+		bottom: -25%;
+		left: -50%;
+		margin-left: -100px;
+		opacity: 0;
+		transition: opacity 0.3s;
+			
+		line-height: 120%;
+		font-size: 0.8rem;
+	}
+
+	.tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 40%;
+		left: 105%;
+		//   top: 100%;
+		//   left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent transparent $color1;
+	}
+
+	&:hover {
+		.tooltiptext {
+			visibility: visible;
+			opacity: 0.7;
+		}
+	}
+}
+
+.tooltip-right {
+	position: relative;
+	display: flex;
+	border-bottom: 1px dotted black;
+
+	.tooltiptext {
+		visibility: hidden;
+		//   width: 100px;
+		width: $pixel-size * 10;
+		height: $pixel-size * 4;
+		background-color: $color1;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 3px 5px 3px;
+		position: absolute;
+		z-index: 1;
+		//   bottom: 125%;
+		//   left: 50%;
+		bottom: -25%;
+		right: -50%;
+		margin-right: -100px;
+		opacity: 0;
+		transition: opacity 0.3s;
+			
+		line-height: 120%;
+		font-size: 0.8rem;
+	}
+
+	.tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 40%;
+		right: 100%;
+		//   top: 100%;
+		//   left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent $color1 transparent transparent  ;
+	}
+
+	&:hover {
+		.tooltiptext {
+			visibility: visible;
+			opacity: 0.7;
+		}
+	}
+}
+
+.canvas {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+footer {
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	margin: 0 auto;
+	bottom: 1rem;
+}
+
+
